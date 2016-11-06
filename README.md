@@ -1,24 +1,28 @@
-Repository for the Applied Data Analytics course project
+Repository for the EPFL Applied Data Analysis Autumn 2016 course project
+
+# Team
+- Brandon Le Sann
+- Timothée Lottaz
+- Seth Vanderwilt
 
 # Abstract
-The goal of the project is to analyse a set of geolocalized tweets in Switzerland, to build a map of Switzerland similar to the one of [Happy Maps](http://goodcitylife.org/happymaps/). We will focus on one feature, "is the tweet positive or negative?". We will provide an interactive map, that takes a keyword as input, such as "CFF" (Swiss train company). It will filter the tweets containing this keyword, and show the average / mean of the "positiveness" of the tweets on a map, using the geolocalization tags.
+The goal of the project is to analyze a set of geolocated tweets in Switzerland and construct a map of Switzerland similar to that of [Happy Maps](http://goodcitylife.org/happymaps/). We will focus on characterizing the sentiment of the tweets as positive or negative towards a certain entity, i.e. "is this tweet positive or negative about company X?". We will create an interactive map that takes a keyword as input, such as "CFF" (Swiss national railway). The map will aggregate the geotagged tweets containing this keyword and show the local average "positivity" of these tweets on a heamap.
 
 # Data description
-Geolocalized tweets from 20xx up to 20xx, located in Switzerland, gathered by xx. Licence?
+Geolocalized tweets from January-August 2016, located in Switzerland, gathered by ADA course staff. TODO ask for more details/license?
 
 # Feasibility and Risks
 The main challenges of the project are:
-* Big data: the dataset is huge and we might need to get help of a cluster to process all of the data.
-* Sparsity: swiss people are not very active on Tweeter, and the regions out of the big cities might contain very sparse information.
-* Geolocalization: we don't know yet the fraction of the tweets that are geolocalized
-* Languages: Switzerland contains a big fraction of tweets in English, French, Swiss-German and Swiss-Italian. It will be difficult to compare them together. One solution is to only focus on English tweets, or we might use a translation API.
+* Big data: the dataset is huge and we might need to use a cluster to process all of the data.
+* Sparsity: Swiss people are not known to be active on Twitter, and the regions outside of the big cities may only contain limited information.
+* Multiple languages: given its cultural diversity and international touristic appeal, Swiss Twitter contains tweets in English, French, Swiss-German, Swiss-Italian and many other languages! This complicates our sentiment analysis pipeline - potential solutions could be to only consider only consider tweets in English or to translate all tweets to English before extracting sentiment.
 * Other?
 
 # Deliverables
 The deliverables are:
-* The source code of the project, in the form of python files / a python notebook.
-* A pdf presenting the main results, such as maps, tables, statistical analysis of the results
-* The interactive map
+* The interactive visualization (map!)
+* The source code of the project
+* An iPython notebook or PDF presenting the main results, such as maps, tables and statistical analysis
 
 # Timeplan
 ?
