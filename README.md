@@ -6,7 +6,7 @@ Repository for the EPFL Applied Data Analysis Autumn 2016 course project
 - Seth Vanderwilt
 
 # Abstract
-The goal of the project is to analyze a set of geolocated tweets in Switzerland and construct a map of Switzerland similar to that of [Happy Maps](http://goodcitylife.org/happymaps/). We will focus on characterizing the sentiment of the tweets as positive or negative towards a certain entity, i.e. "is this tweet positive or negative about company X?". We will create an interactive map that takes a keyword as input, for example "CFF" (Swiss national railway). The map will then aggregate the geotagged tweets containing this keyword and show the local average "positivity" of these tweets on a heamap.
+The goal of the project is to analyze a set of geolocated tweets in Switzerland and construct a map of Switzerland similar to that of [Happy Maps](http://goodcitylife.org/happymaps/). We will focus on characterizing the sentiment of the tweets as positive or negative towards a certain entity, i.e. "is this tweet positive or negative about company X?". We will create an interactive map that takes a keyword as input, for example "CFF" (Swiss national railway). The map will then aggregate the geotagged tweets containing this keyword and show the local average "positivity" of these tweets on a heatmap.
 
 # Data description
 Geolocalized tweets from January-August 2016, located in Switzerland, gathered by ADA course staff. TODO ask for more details/license?
