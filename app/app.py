@@ -1,4 +1,5 @@
-from flask import Flask, send_file
+from flask import Flask, send_file, request, render_template
+
 import pandas as pd
 import pickle
 import os
@@ -19,12 +20,20 @@ if not os.path.exists('maps'):
 
 app = Flask("opinion-map")
 
+#def serve_map(search_query):
 @app.route('/search/<search_query>')
-def serve_map(search_query):
-    # TODO steps
-    # create base search box, map
-    # stuff with pandas
+@app.route('/search', methods=['GET', 'POST'])
+def serve_map(search_query=None):
+    print("REQUEST FORM IS")
+    print(request.form)
+    if request.form:
+        search_query = request.form.get("search")
+        lang = request.form.getlist("lang")
+        wk = request.form.getlist("wk")
+        match = request.form.get("match")
+        result_type = request.form.get("result_type")
 
+    #TODO hook up to form
     if search_query:
         df = search_df(opinion_df, search_query.split(" "), search_exclusive=False)
     else:
@@ -39,17 +48,14 @@ def serve_map(search_query):
     folium_map.save("maps/map-test-%s.html" % search_query)
 
     print(search_query)
-    return """
-    <iframe src="/map-test-%s.html" width="100%%" height="80%%">iframe debug text between tags</iframe>
-    """ % search_query
+
+    return render_template('show_map.html', search_query=search_query)
 
 @app.route('/map-test-<search_query>.html')
-def show_map(search_query):
+@app.route('/map-test-.html')
+def show_map(search_query=None):
     # Get the folium map generated for this query
     return send_file('maps/map-test-%s.html' % search_query)
-
-#TODO could serve some
-#@app.route('/<mapname>.html')
 
 if __name__ == '__main__':
     app.run()
