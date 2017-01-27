@@ -2,7 +2,40 @@ import pandas as pd
 import numpy as np
 import folium
 
+
+# ========== Sub-functions to filter data ==========
+def filter_lang(df, langs):
+    """ filter the df with one or several languages """
+    return df[df['lang'].isin(langs)]
+
+def filter_relevant_states(df, threshold):
+    """ keep states that have more than `threshold` tweets """
+    return df.groupby("geo_state").filter(lambda x: x.count()["main"] > threshold)
+
+def append_weekday(df):
+    df["weekday"] = df["published"].apply(lambda x: x.weekday())
+
+def filter_weekday(df, days): #drop weekday after?
+    return df[df['weekday'].isin(days)]
+
+def filter_df(df, langs = ['en'], days = [0, 1, 2, 3, 4, 5, 6], threshold=0):
+    # Language filter
+    df = filter_lang(df, langs)
+    # Threshold filter if necessary
+    if threshold > 0:
+        df = filter_relevant_states(df, threshold)
+    # Weekday filter
+    append_weekday(df)
+    df = filter_weekday(df, days)
+    df = df.drop('weekday', 1)
+    return df
+
+
+# ========== Search ==========
+
+
 def search_df(df, search_terms, search_exclusive=False):
+    """ Searches the df for either one of the terms. If `search_exclusive` is True, then searches the df for entries that have all terms """
     # Lowercase search terms
     search_terms = [t.lower() for t in search_terms]
 
@@ -20,13 +53,16 @@ def search_df(df, search_terms, search_exclusive=False):
 
     return df[search_filter_bool]
 
+
+# ========== Map Generation ==========
+
 def generate_folium(df):
     df_to_map = df.groupby("geo_state").mean()
     df_to_map = append_state_code(df_to_map)
 
     geo_path = '../utils/ch-cantons.topojson.json'
 
-    folium_map = folium.Map(location=[46.57, 8], zoom_start=8)
+    folium_map = folium.Map(location=[46.8, 8.2], zoom_start=8)
     folium_map.choropleth(geo_path=geo_path,
                          data=df_to_map,
                          columns=['state_code', 'sentiment'],
