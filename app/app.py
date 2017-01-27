@@ -25,14 +25,19 @@ def serve_map(search_query=None):
     print("REQUEST FORM IS")
     print(request.form)
     if request.form:
-        print(request.form["search"])
         search_query = request.form.get("search")
         lang = request.form.getlist("lang")
-        wk = request.form.getlist("wk")
-        match = request.form.get("match")
-        result_type = request.form.get("result_type")
+        weekdays = request.form.getlist("weekdays")
+        matching_method = request.form.get("matching_method")
+        metric_type = request.form.get("metric_type")
+    else:
+        # Default values
+        lang = []
+        weekdays = []
+        matching_method = 'match_any'
+        metric_type = 'metric_mean'
 
-    #TODO hook up to form
+
     if search_query:
         df = search_df(opinion_df, search_query.split(" "), search_exclusive=False)
     else:
@@ -41,9 +46,12 @@ def serve_map(search_query=None):
     folium_map = generate_folium(df)
     folium_map.save("maps/map-test-%s.html" % search_query)
 
-    print(search_query)
-
-    return render_template('show_map.html', search_query=search_query)
+    return render_template('show_map.html',
+        search_query=search_query,
+        lang=lang,
+        matching_method=matching_method,
+        metric_type=metric_type
+    )
 
 @app.route('/map-test-<search_query>.html')
 def show_map(search_query):

@@ -3,36 +3,36 @@
 <form id="searchbox" action="/search" method="post">
     <div class="form-group">
         <label for="search">Search</label>
-        <input name="search" type="text" placeholder="Type one or multiple terms" class="form-control" id="search">
+        <input name="search" type="text" placeholder="Type one or multiple terms" class="form-control" id="search" value="{% if search_query %}{{ search_query }}{% endif %}">
     </div>
     <div class="form-group">
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="lang-en">
+                <input type="checkbox" name="lang" value="en" {% if 'en' in lang %} checked {% endif %}>
                 English
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="lang-fr">
+                <input type="checkbox" name="lang" value="fr" {% if 'fr' in lang %} checked {% endif %}>
                 French
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="lang-de">
+                <input type="checkbox" name="lang" value="de" {% if 'de' in lang %} checked {% endif %}>
                 German
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="lang-it">
+                <input type="checkbox" name="lang" value="it" {% if 'it' in lang %} checked {% endif %}>
                 Italian
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" value="lang-other">
+                <input type="checkbox" name="lang" value="other" {% if 'other' in lang %} checked {% endif %}>
                 Other
             </label>
         </div>
@@ -41,13 +41,13 @@
     <div class="form-group">
         <div class="radio">
             <label>
-                <input type="radio" name="matching_method" id="matching_method2" value="match_any" checked>
+                <input type="radio" name="matching_method" id="matching_method2" value="match_any" {% if matching_method == 'match_any' %} checked {% endif %}>
                 Match any
             </label>
         </div>
         <div class="radio">
             <label>
-                <input type="radio" name="matching_method" id="matching_method1" value="match_all">
+                <input type="radio" name="matching_method" id="matching_method1" value="match_all" {% if matching_method == 'match_all' %} checked {% endif %}>
                 Match all
             </label>
         </div>
@@ -56,13 +56,13 @@
     <div class="form-group">
         <div class="radio">
             <label>
-                <input type="radio" name="metric_type" id="metric_type1" value="metric_mean" checked>
+                <input type="radio" name="metric_type" id="metric_type1" value="metric_mean" {% if metric_type == 'metric_mean' %} checked {% endif %}>
                 Mean of sentiment
             </label>
         </div>
         <div class="radio">
             <label>
-                <input type="radio" name="metric_type" id="metric_type2" value="metric_count">
+                <input type="radio" name="metric_type" id="metric_type2" value="metric_count" {% if metric_type == 'metric_count' %} checked {% endif %}>
                 Count of tweets
             </label>
         </div>
