@@ -8,32 +8,26 @@
     <div class="form-group">
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="lang" value="en" {% if 'en' in lang %} checked {% endif %}>
+                <input type="checkbox" name="langs" value="en" {% if 'en' in langs %} checked {% endif %}>
                 English
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="lang" value="fr" {% if 'fr' in lang %} checked {% endif %}>
+                <input type="checkbox" name="langs" value="fr" {% if 'fr' in langs %} checked {% endif %}>
                 French
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="lang" value="de" {% if 'de' in lang %} checked {% endif %}>
+                <input type="checkbox" name="langs" value="de" {% if 'de' in langs %} checked {% endif %}>
                 German
             </label>
         </div>
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="lang" value="it" {% if 'it' in lang %} checked {% endif %}>
+                <input type="checkbox" name="langs" value="it" {% if 'it' in langs %} checked {% endif %}>
                 Italian
-            </label>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" name="lang" value="other" {% if 'other' in lang %} checked {% endif %}>
-                Other
             </label>
         </div>
     </div>
@@ -75,6 +69,19 @@
 
 {% block map %}
 
-<iframe src="/map-test-{{ search_query }}.html" class="fill-height" style="display:block;" width="100%">iframe debug text between tags</iframe>
+<iframe src="/map-test-{{ file_path }}.html" class="fill-height" style="display:block;" width="100%">iframe debug text between tags</iframe>
 
+{% endblock %}
+
+{% block stats %}
+{% if selected_tweets|length > 0 %}
+<div class="list-group pre-scrollable" style="height: 200px;">
+    {% for _, tweet in selected_tweets.iterrows() %}
+    <div class="list-group-item">
+        <h4 class="list-group-item-heading">{{ tweet['geo_state'] }}</h4>
+        <p class="list-group-item-text">{{ tweet['main'] }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
 {% endblock %}

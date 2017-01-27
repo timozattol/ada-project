@@ -8,6 +8,7 @@ from functions import search_df
 from functions import generate_folium
 from functions import filter_df
 from functions import count_df
+from functions import random_tweets
 
 with open("../datasets/parsed_filtered_df.pkl", "rb") as handle:
        main_df = pickle.load(handle)
@@ -28,45 +29,52 @@ def serve_map(search_query=None):
     print(request.form)
     if request.form:
         search_query = request.form.get("search")
-        lang = request.form.getlist("lang")
-        weekdays = request.form.getlist("weekdays")
+        langs = request.form.getlist("langs")
         matching_method = request.form.get("matching_method")
         metric_type = request.form.get("metric_type")
     else:
         # Default values
-        lang = []
-        weekdays = []
+        langs = []
         matching_method = 'match_any'
         metric_type = 'metric_mean'
 
+    file_path = "%s-%s-%s-%s" % (search_query, ":".join(langs), matching_method, metric_type)
 
-    if search_query:
-        ##df = search_df(opinion_df, search_query.split(" "), search_exclusive=False)
-        df = search_df(main_df, search_query.split(" "), search_exclusive=False)
+
+    if metric_type == 'metric_count':
+        df = main_df
     else:
         df = opinion_df
 
-    #df = filter_df(df, ['en'], [0, 1, 2])
+    if search_query:
+        df = search_df(df, search_query.split(" "), search_exclusive=(matching_method == 'match_all'))
 
-    
-    ## TODO count df should be done on main_df 
-    df_count = count_df(df, main_df)
-    #folium_map = generate_folium(df)
-    folium_map = generate_folium(df_count, count=True)
-    folium_map.save("maps/map-test-%s.html" % search_query)
+    if len(langs) > 0:
+        df = filter_df(df, langs)
+
+    if metric_type == 'metric_count':
+        df = count_df(df, main_df)
+
+    folium_map = generate_folium(df, method=metric_type)
+
+    folium_map.save("maps/map-test-%s.html" % file_path)
+
+    selected_tweets = random_tweets(df)
 
     return render_template('show_map.html',
         search_query=search_query,
-        lang=lang,
+        langs=langs,
         matching_method=matching_method,
-        metric_type=metric_type
+        metric_type=metric_type,
+        file_path=file_path,
+        selected_tweets=selected_tweets
     )
 
-@app.route('/map-test-<search_query>.html')
+@app.route('/map-test-<file_path>.html')
 @app.route('/map-test-.html')
-def show_map(search_query=None):
+def show_map(file_path=None):
     # Get the folium map generated for this query
-    return send_file('maps/map-test-%s.html' % search_query)
+    return send_file('maps/map-test-%s.html' % file_path)
 
 if __name__ == '__main__':
     app.run()
