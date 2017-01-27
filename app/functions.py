@@ -1,3 +1,4 @@
+import pandas as pd
 import numpy as np
 import folium
 
@@ -21,24 +22,24 @@ def search_df(df, search_terms, search_exclusive=False):
 
 def generate_folium(df):
     df_to_map = df.groupby("geo_state").mean()
-    append_state_code(df_to_map)
-
-    print(df_to_map)
+    df_to_map = append_state_code(df_to_map)
 
     geo_path = '../utils/ch-cantons.topojson.json'
 
-    folium_map = folium.Map(location=[46.57, 8], zoom_start=8)
+    folium_map = folium.Map(location=[46.8, 8.2], zoom_start=8)
     folium_map.choropleth(geo_path=geo_path,
                          data=df_to_map,
                          columns=['state_code', 'sentiment'],
                          key_on='feature.id',
                          topojson='objects.cantons',
-                         fill_color='YlGn'
+                         threshold_scale=[-0.66, -0.33, 0, 0.33, 0.66],
+                         fill_color='RdYlGn',
+                         legend_name='Happyness level 2016'
                         )
     return folium_map
 
 def append_state_code(df):
-    '''Adds state code in a new column, in place'''
+    '''Adds state code in a new column, (semi-)in place'''
 
     state_to_code = {
         'Zurich': 'ZH',
@@ -70,3 +71,10 @@ def append_state_code(df):
     }
 
     df['state_code'] = [state_to_code[index] for index in df.index.values]
+
+    # Create missing rows to match the json
+    for state, state_code in state_to_code.items():
+        if state_code not in df['state_code'].tolist():
+            df = df.append(pd.Series({"state_code": state_code, "sentiment": 0}), ignore_index=True)
+
+    return df

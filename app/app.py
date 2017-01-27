@@ -46,7 +46,6 @@ def serve_map(search_query=None):
     folium_map = generate_folium(df)
     folium_map.save("maps/map-test-%s.html" % search_query)
 
-#   return df.__repr__()
     print(search_query)
     #old form stuff
     return """
