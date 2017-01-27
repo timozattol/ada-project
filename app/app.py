@@ -26,11 +26,18 @@ def serve_map(search_query=None):
     if request.form:
         print(request.form["search"])
         search_query = request.form.get("search")
-        lang = request.form.get("lang")
-        wk = request.form.get("wk")
+        lang = request.form.getlist("lang")
+        wk = request.form.getlist("wk")
         match = request.form.get("match")
         result_type = request.form.get("result_type")
 #       return redirect('/search/%s' % search_query)
+        #DEBUG
+        print(search_query)
+        print(lang)
+        print(wk)
+        print(match)
+        print(result_type)
+
     # TODO steps
     # create base search box, map
     # stuff with pandas
