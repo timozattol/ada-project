@@ -5,7 +5,6 @@ import os
 
 from functions import search_df
 from functions import generate_folium
-from functions import filter_df
 
 with open("../datasets/parsed_filtered_df.pkl", "rb") as handle:
        main_df = pickle.load(handle)
@@ -28,8 +27,6 @@ def serve_map(search_query):
         df = search_df(opinion_df, search_query.split(" "), search_exclusive=False)
     else:
         df = opinion_df
-
-    df = filter_df(df, ['en'], [0, 1, 2])
 
     folium_map = generate_folium(df)
     folium_map.save("maps/map-test-%s.html" % search_query)
