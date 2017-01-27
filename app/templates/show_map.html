@@ -1,8 +1,80 @@
 {% extends "layout.html" %}
 {% block controls %}
-    <h1>Hello</h1>
-    <form>
-      <input type="text" />
-      <input type="password" />
-    </form>
+<form id="searchbox" action="/search" method="post">
+    <div class="form-group">
+        <label for="search">Search</label>
+        <input name="search" type="text" placeholder="Type one or multiple terms" class="form-control" id="search">
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="lang-en">
+                English
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="lang-fr">
+                French
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="lang-de">
+                German
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="lang-it">
+                Italian
+            </label>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="lang-other">
+                Other
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="radio">
+            <label>
+                <input type="radio" name="matching_method" id="matching_method2" value="match_any" checked>
+                Match any
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="matching_method" id="matching_method1" value="match_all">
+                Match all
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="radio">
+            <label>
+                <input type="radio" name="metric_type" id="metric_type1" value="metric_mean" checked>
+                Mean of sentiment
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="metric_type" id="metric_type2" value="metric_count">
+                Count of tweets
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-default">Search</button>
+    </div>
+</form>
+{% endblock %}
+
+{% block map %}
+
+<iframe src="/map-test-{{ search_query }}.html" style="display:block;" height="500px" width="100%">iframe debug text between tags</iframe>
+
 {% endblock %}
