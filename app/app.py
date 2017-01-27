@@ -52,6 +52,8 @@ def serve_map(search_query=None):
     if len(langs) > 0:
         df = filter_df(df, langs)
 
+    selected_tweets = random_tweets(df)
+
     if metric_type == 'metric_count':
         df = count_df(df, main_df)
 
@@ -59,7 +61,6 @@ def serve_map(search_query=None):
 
     folium_map.save("maps/map-test-%s.html" % file_path)
 
-    selected_tweets = random_tweets(df)
 
     return render_template('show_map.html',
         search_query=search_query,

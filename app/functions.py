@@ -24,7 +24,12 @@ def get_happy_sad_tweet(df, happy):
     return main_df_opinion.loc[tweet_selected_index]
 
 def random_tweets(df, number=10):
-    return df.sample(number)
+    number = min(len(df), number)
+
+    if number > 0:
+        return df.sample(number)
+    else:
+        return pd.DataFrame()
 
 # ========== Sub-functions to filter data ==========
 
