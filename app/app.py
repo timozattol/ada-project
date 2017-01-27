@@ -35,14 +35,16 @@ def serve_map(search_query=None):
 
     #TODO hook up to form
     if search_query:
-        df = search_df(opinion_df, search_query.split(" "), search_exclusive=False)
+        ##df = search_df(opinion_df, search_query.split(" "), search_exclusive=False)
+        df = search_df(main_df, search_query.split(" "), search_exclusive=False)
     else:
         df = opinion_df
 
     #df = filter_df(df, ['en'], [0, 1, 2])
 
-    print("yoyoyyoo")
-    df_count = count_df(df, opinion_df)
+    
+    ## TODO count df should be done on main_df 
+    df_count = count_df(df, main_df)
     #folium_map = generate_folium(df)
     folium_map = generate_folium(df_count, count=True)
     folium_map.save("maps/map-test-%s.html" % search_query)
