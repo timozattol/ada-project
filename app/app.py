@@ -25,7 +25,6 @@ def serve_map(search_query=None):
     print("REQUEST FORM IS")
     print(request.form)
     if request.form:
-        print(request.form["search"])
         search_query = request.form.get("search")
         lang = request.form.getlist("lang")
         wk = request.form.getlist("wk")
@@ -46,7 +45,8 @@ def serve_map(search_query=None):
     return render_template('show_map.html', search_query=search_query)
 
 @app.route('/map-test-<search_query>.html')
-def show_map(search_query):
+@app.route('/map-test-.html')
+def show_map(search_query=None):
     # Get the folium map generated for this query
     return send_file('maps/map-test-%s.html' % search_query)
 
