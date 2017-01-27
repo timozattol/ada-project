@@ -27,11 +27,10 @@ def serve_map(search_query=None):
     if request.form:
         print(request.form["search"])
         search_query = request.form.get("search")
-        lang = request.form.get("lang")
-        wk = request.form.get("wk")
+        lang = request.form.getlist("lang")
+        wk = request.form.getlist("wk")
         match = request.form.get("match")
         result_type = request.form.get("result_type")
-
 
     #TODO hook up to form
     if search_query:
