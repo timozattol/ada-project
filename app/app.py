@@ -1,4 +1,4 @@
-from flask import Flask, send_file
+from flask import Flask, send_file, request
 import pandas as pd
 import pickle
 import os
@@ -17,13 +17,28 @@ if not os.path.exists('maps'):
 
 app = Flask("opinion-map")
 
+#def serve_map(search_query):
 @app.route('/search/<search_query>')
-def serve_map(search_query):
+@app.route('/search', methods=['GET', 'POST'])
+def serve_map(search_query=None):
+    print("REQUEST FORM IS")
+    print(request.form)
+    if request.form:
+        print(request.form["search"])
+        search_query = request.form.get("search")
+        lang = request.form.get("lang")
+        wk = request.form.get("wk")
+        match = request.form.get("match")
+        result_type = request.form.get("result_type")
+#       return redirect('/search/%s' % search_query)
     # TODO steps
     # create base search box, map
     # stuff with pandas
 
+    #TODO hook up to form
     if search_query:
+        #SLOW but keeps neutral sentiments
+        #df = search_df(main_df, search_query.split(" "), search_exclusive=False)
         df = search_df(opinion_df, search_query.split(" "), search_exclusive=False)
     else:
         df = opinion_df
@@ -33,7 +48,23 @@ def serve_map(search_query):
 
 #   return df.__repr__()
     print(search_query)
+    #old form stuff
     return """
+    <form id="searchbox" action="/search" method="post">
+        <input name="search" type="text" placeholder="Type here"/>
+        <input type="submit" value="Search"/>
+        <label> <input name="lang" value="lang1" type="checkbox" />lang1</label>
+        <label> <input name="lang" value="lang2" type="checkbox" />lang2</label>
+        <label> <input name="lang" value="lang3" type="checkbox" />lang3</label>
+        <label> <input name="wk" value="weekday" type="checkbox" />weekday</label>
+        <label> <input name="wk" value="weekend" type="checkbox" />weekend</label>
+        <label> <input name="match" value="all" type="radio" />all</label>
+        <label> <input name="match" value="any" type="radio" />any</label>
+        <label> <input name="result_type" value="mean sentiment" type="radio" />mean sentiment</label>
+        <label> <input name="result_type" value="count" type="radio" />count</label>
+
+    </form>
+
     <iframe src="/map-test-%s.html" width="100%%" height="80%%">iframe debug text between tags</iframe>
     """ % search_query
 
