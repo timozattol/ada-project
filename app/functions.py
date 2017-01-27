@@ -112,7 +112,7 @@ def generate_folium(df, count=False):
         legend = 'Happineess level 2016 per state'
 
     else:
-        thresh = [0, 0.01, 0.02, 1] #try different stuff
+        thresh = [] #try different stuff
         colors = 'BuPu'
         legend = 'Proportion of tweets mentionning topic per canton'
 
