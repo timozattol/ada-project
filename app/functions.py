@@ -26,7 +26,7 @@ def generate_folium(df):
 
     geo_path = '../utils/ch-cantons.topojson.json'
 
-    folium_map = folium.Map(location=[46.57, 8], zoom_start=8)
+    folium_map = folium.Map(location=[46.8, 8.2], zoom_start=8)
     folium_map.choropleth(geo_path=geo_path,
                          data=df_to_map,
                          columns=['state_code', 'sentiment'],
