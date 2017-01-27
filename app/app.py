@@ -31,7 +31,6 @@ def serve_map(search_query):
     folium_map = generate_folium(df)
     folium_map.save("maps/map-test-%s.html" % search_query)
 
-#   return df.__repr__()
     print(search_query)
     return """
     <iframe src="/map-test-%s.html" width="100%%" height="80%%">iframe debug text between tags</iframe>
