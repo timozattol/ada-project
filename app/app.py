@@ -1,4 +1,5 @@
-from flask import Flask, send_file, request
+from flask import Flask, send_file, request, render_template
+
 import pandas as pd
 import pickle
 import os
@@ -78,6 +79,11 @@ def serve_map(search_query=None):
 def show_map(search_query):
     # Get the folium map generated for this query
     return send_file('maps/map-test-%s.html' % search_query)
+
+@app.route('/test')
+def test():
+
+    return render_template('show_map.html')
 
 #TODO could serve some
 #@app.route('/<mapname>.html')
