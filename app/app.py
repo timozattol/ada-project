@@ -12,7 +12,6 @@ from functions import random_tweets
 
 with open("../datasets/parsed_filtered_df.pkl", "rb") as handle:
        main_df = pickle.load(handle)
-
 opinion_df = main_df[main_df['sentiment'] != 0]
 
 # Set up map directory
@@ -22,6 +21,7 @@ if not os.path.exists('maps'):
 app = Flask("opinion-map")
 
 #def serve_map(search_query):
+@app.route('/')
 @app.route('/search/<search_query>')
 @app.route('/search', methods=['GET', 'POST'])
 def serve_map(search_query=None):
