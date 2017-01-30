@@ -1,3 +1,8 @@
+@font-face{
+    font-family: "Sawasdee-Bold";
+    src: url('Sawasdee-Bold.ttf');
+}
+
 html, body, .fill-height {
     height: 100%;
 }
@@ -11,4 +16,23 @@ html, body, .fill-height {
 
 .logo img {
     width: 150px;
+}
+
+.main-title {
+    font-family: "Sawasdee-Bold", inherit;
+}
+
+.main-title img {
+    width: 45px;
+    position: absolute;
+    right: 0px;
+    top: 15px;
+}
+
+.red {
+    color: #b10000;
+}
+
+.selected_tweets {
+    height: 150px;
 }

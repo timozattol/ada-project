@@ -1,5 +1,11 @@
 {% extends "layout.html" %}
 {% block controls %}
+<h2 class="main-title">
+    <span class="red">Swiss</span>Feels
+    <a href="https://github.com/timozattol/ada-project" target="_blank">
+        <img src="static/github120.png">
+    </a>
+</h2>
 <form id="searchbox" action="/search" method="post">
     <div class="form-group">
         <label for="search">Search</label>
@@ -75,7 +81,7 @@
 
 {% block stats %}
 {% if selected_tweets|length > 0 %}
-<div class="list-group pre-scrollable" style="height: 200px;">
+<div class="selected_tweets list-group pre-scrollable">
     {% for _, tweet in selected_tweets.iterrows() %}
     <div class="list-group-item">
         <h4 class="list-group-item-heading">{{ tweet['geo_state'] }}</h4>
