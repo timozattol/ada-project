@@ -35,4 +35,5 @@ html, body, .fill-height {
 
 .selected_tweets {
     height: 150px;
+    overflow-x: hidden;
 }
