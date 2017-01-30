@@ -25,8 +25,6 @@ app = Flask("opinion-map")
 @app.route('/search/<search_query>')
 @app.route('/search', methods=['GET', 'POST'])
 def serve_map(search_query=None):
-    print("REQUEST FORM IS")
-    print(request.form)
     if request.form:
         search_query = request.form.get("search")
         langs = request.form.getlist("langs")
@@ -39,7 +37,6 @@ def serve_map(search_query=None):
         metric_type = 'metric_mean'
 
     file_path = "%s-%s-%s-%s" % (search_query, ":".join(langs), matching_method, metric_type)
-
 
     if metric_type == 'metric_count':
         df = main_df
