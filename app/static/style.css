@@ -1,3 +1,14 @@
 html, body, .fill-height {
     height: 100%;
 }
+
+.logo {
+    float: right;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+}
+
+.logo img {
+    width: 150px;
+}
