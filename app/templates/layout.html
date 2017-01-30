@@ -24,19 +24,23 @@
     <![endif]-->
   </head>
   <body>
-      <div class="container-fluid fill-height">
-          <div class="row fill-height">
-              <div class="col-sm-3">
-                  {% block controls %}{% endblock %}
-                  {% block stats %}{% endblock %}
-              </div>
-              <div class="col-sm-9 fill-height">
-                  {% block map %}{% endblock %}
-              </div>
+        <div class="container-fluid fill-height">
+            <div class="row fill-height">
+                <div class="col-sm-3">
+                    {% block controls %}{% endblock %}
+                    {% block stats %}{% endblock %}
+                </div>
+                <div class="col-sm-9 fill-height">
+                    {% block map %}{% endblock %}
+                    <div class="logo">
+                        <img src="static/swissfeels350.png">
+                    </div>
+                </div>
+
           </div>
 
 
-      </div>
+        </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
