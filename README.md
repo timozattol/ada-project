@@ -10,9 +10,28 @@ SwissFeels, an interactive sentiment map of Switzerland, built for the EPFL Appl
 ## Abstract
 The goal of our project was to analyze a large dataset of geolocated tweets and construct an interactive sentiment map of Switzerland, similar to that of [Happy Maps](http://goodcitylife.org/happymaps/). We focused on characterizing the sentiment of the tweets as positive or negative towards a certain entity, i.e. "is this tweet positive or negative about company X?". The objective was to have an interactive visualization that takes a keyword as input, for example "CFF" (Swiss national railway) and displays the sentiment of each canton on the Swiss map. 
 
-
 ## Data aquisition
 The ADA course staff collected tweets from January to November 2016 that were geolocated in Switzerland. Each tweet was annotated with estimates of its language and sentiment. We filtered the original 50GB dataset to a more manageable collection of approximately 3.7 million tweets.
+
+## Repository Contents
+
+Data wrangling and analysis notebooks:
+* [First look at the data fields and format](01dataset_partial_overview.ipynb)
+* [Fetch the data we want from Hadoop cluster and store it locally](02data_processing.py)
+* [Exploratory analysis of the data with aggregate statistics and sentiment](03data_exploration.ipynb)
+* [Searching the dataset with a few different subjects](04applied_statistics.ipynb)
+* [Test code for the Flask app](05_app_testing.ipynb)
+* [Generate plots for our beautiful poster](06_poster_graphs.ipynb)
+
+Interactive visualization webapp using Flask:
+* [Flask webapp main code](app/app.py)
+* [Backend data searching, map creation and tweet selection functions](app/functions.py)
+* [App package requirements](app/requirements.txt)
+* [Static logos and CSS](app/static/)
+* [Webapp HTML templates](app/templates/)
+* [Pickled dataframe of tweets used by the webapp](app/datasets/parsed_filtered_df.pkl)
+* [TopoJSON file for Swiss canton boundaries](utils/ch-cantons.topojson.json)
+* Note: The interactive viz saves every query result in the local directory _app/maps_
 
 ## Data format
 The following fields were necessary in order to process the tweets:
