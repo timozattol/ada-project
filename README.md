@@ -23,13 +23,12 @@ Data wrangling and analysis notebooks:
 * [Test code for the Flask app](05_app_testing.ipynb)
 * [Generate plots for our beautiful poster](06_poster_graphs.ipynb)
 
-Interactive visualization webapp using Flask:
+Interactive visualization webapp using Flask, pandas and Folium:
 * [Flask webapp main code](app/app.py)
 * [Backend data searching, map creation and tweet selection functions](app/functions.py)
 * [App package requirements](app/requirements.txt)
 * [Static logos and CSS](app/static/)
 * [Webapp HTML templates](app/templates/)
-* [Pickled dataframe of tweets used by the webapp](app/datasets/parsed_filtered_df.pkl)
 * [TopoJSON file for Swiss canton boundaries](utils/ch-cantons.topojson.json)
 * Note: The interactive viz saves every query result in the local directory _app/maps_
 
