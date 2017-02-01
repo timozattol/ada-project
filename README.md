@@ -1,28 +1,46 @@
-Repository for the EPFL Applied Data Analysis Autumn 2016 course project
+# SwissFeels
 
-# Team
+SwissFeels, an interactive sentiment map of Switzerland, built for the EPFL Applied Data Analysis Autumn 2016 course
+
+## Team
 - Brandon Le Sann
 - Timothée Lottaz
 - Seth Vanderwilt
 
-# Abstract
-The goal of the project is to analyze a set of geolocated tweets in Switzerland and construct a map of Switzerland similar to that of [Happy Maps](http://goodcitylife.org/happymaps/). We will focus on characterizing the sentiment of the tweets as positive or negative towards a certain entity, i.e. "is this tweet positive or negative about company X?". We will create an interactive map that takes a keyword as input, for example "CFF" (Swiss national railway). The map will then aggregate the geotagged tweets containing this keyword and show the local average "positivity" of these tweets on a heatmap.
+## Abstract
+The goal of our project was to analyze a large dataset of geolocated tweets and construct an interactive sentiment map of Switzerland, similar to that of [Happy Maps](http://goodcitylife.org/happymaps/). We focused on characterizing the sentiment of the tweets as positive or negative towards a certain entity, i.e. "is this tweet positive or negative about company X?". The objective was to have an interactive visualization that takes a keyword as input, for example "CFF" (Swiss national railway) and displays the sentiment of each canton on the Swiss map. 
 
-# Data description
-Geolocalized tweets from January-August 2016, located in Switzerland, gathered by ADA course staff. TODO ask for more details/license?
 
-# Feasibility and Risks
-The main challenges of the project are:
-* Big data: the dataset is huge and we might need to use a cluster to process all of the data.
-* Sparsity: Swiss people are not known to be very active on Twitter, and the regions outside of the big cities may only contain limited information.
-* Multiple languages: given its cultural diversity and international touristic appeal, Swiss Twitter contains tweets in English, French, Swiss-German, Swiss-Italian and many other languages! This complicates our sentiment analysis pipeline - potential solutions could be to only consider only consider tweets in English or to translate all tweets to English before extracting sentiment.
-* Other?
+## Data aquisition
+The ADA course staff collected tweets from January to November 2016 that were geolocated in Switzerland. Each tweet was annotated with estimates of its language and sentiment. We filtered the original 50GB dataset to a more manageable collection of approximately 3.7 million tweets.
 
-# Deliverables
-The deliverables are:
-* The interactive visualization (map!)
-* The source code of the project
-* An iPython notebook or PDF presenting the main results, such as maps, tables and statistical analysis
+## Data format
+The following fields were necessary in order to process the tweets:
+* `geo_state`: the tweet's source canton
+* `sentiment`: the tweet's sentiment, either Positive, Neutral or Negative.
 
-# Timeplan
-?
+We also decided to keep other interesting fields:
+* `author_gender`: which can be MALE, FEMALE, or UNKNOWN
+* `lang`: the language of the tweet
+* `main`: the raw text of the tweet
+* `published`: the date and time the tweet was published
+
+## Data Cleaning / Issues
+
+* There was one major issue with the dataset. The **geolocation** of the tweets was not collected prior to July 2016. This made ~60% of the data unusable.
+* The `geo_state` field was often valid, but we had to filter out some **outliers** that were not Swiss cantons. These represented 0.4% of the data.
+* Another minor issue was the **language detection**. Somehow Spanish seems to be spoken a lot more frequently than Italian (a national language)! Looking further into this problem we found that many Italian-language tweets were mislabeled as Spanish.
+* Twitter **bots** were a problem that we couldn't satisfactorily address. For example many local radio stations automatically tweet their playlists, which polluted the dataset.
+* The **sentiment analysis** algorithm worked poorly on **non-English** tweets.
+
+## Result graphs
+
+
+
+
+## Website
+We built an interactive map of Switzerland that displays the mean sentiment of each Swiss canton. Thanks to the search function, it is possible to view the mean of a subset of tweets containing search terms such as "SBB CFF FFS". See the screenshots section for an example of mean sentiment. There's also an option to display a map of the proportion of tweets containing the search terms, as you can see in the screenshots section. Some matching tweets are displayed so that the user can verify that his/her query works well.
+
+## Screenshots
+
+
