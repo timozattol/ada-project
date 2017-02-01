@@ -3,9 +3,9 @@
 SwissFeels, an interactive sentiment map of Switzerland, built for the EPFL Applied Data Analysis Autumn 2016 course
 
 ## Team
-- Brandon Le Sann
-- Timothée Lottaz
-- Seth Vanderwilt
+- [Brandon Le Sann](https://github.com/BrandonLS)
+- [Timothée Lottaz](https://github.com/timozattol)
+- [Seth Vanderwilt](https://github.com/sethv1)
 
 ## Abstract
 The goal of our project was to analyze a large dataset of geolocated tweets and construct an interactive sentiment map of Switzerland, similar to that of [Happy Maps](http://goodcitylife.org/happymaps/). We focused on characterizing the sentiment of the tweets as positive or negative towards a certain entity, i.e. "is this tweet positive or negative about company X?". The objective was to have an interactive visualization that takes a keyword as input, for example "CFF" (Swiss national railway) and displays the sentiment of each canton on the Swiss map. 
