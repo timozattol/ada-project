@@ -3,9 +3,9 @@
 SwissFeels, an interactive sentiment map of Switzerland, built for the EPFL Applied Data Analysis Autumn 2016 course
 
 ## Team
-- [Brandon Le Sann](https://github.com/BrandonLS)
-- [Timothée Lottaz](https://github.com/timozattol)
-- [Seth Vanderwilt](https://github.com/sethv1)
+* [Brandon Le Sann](https://github.com/BrandonLS)
+* [Timothée Lottaz](https://github.com/timozattol)
+* [Seth Vanderwilt](https://github.com/sethv1)
 
 ## Abstract
 The goal of our project was to analyze a large dataset of geolocated tweets and construct an interactive sentiment map of Switzerland, similar to that of [Happy Maps](http://goodcitylife.org/happymaps/). We focused on characterizing the sentiment of the tweets as positive or negative towards a certain entity, i.e. "is this tweet positive or negative about company X?". The objective was to have an interactive visualization that takes a keyword as input, for example "CFF" (Swiss national railway) and displays the sentiment of each canton on the Swiss map. 
@@ -54,6 +54,16 @@ We also decided to keep other interesting fields:
 We built an interactive map of Switzerland that displays the mean sentiment of each Swiss canton. Thanks to the search function, it is possible to view the mean of a subset of tweets containing search terms such as "SBB CFF FFS". See the screenshots section for an example of mean sentiment. There's also an option to display a map of the proportion of tweets containing the search terms, as you can see in the screenshots section. Some matching tweets are displayed so that the user can verify that his/her query works well.
 
 ## Website screenshots
-![1](http://i.imgur.com/r7UvsWj.jpg)
-![2](http://i.imgur.com/iFvCprJ.jpg)
 
+### Per-canton sentiment mean for "Brexit"
+![Brexit](http://i.imgur.com/r7UvsWj.jpg)
+
+### Per-canton mentions for "Skiing" or "Snowboarding"
+![Ski](http://i.imgur.com/iFvCprJ.jpg)
+
+## Poster
+[A poster](poster.pdf) was also presented to the [Applied ML Days](https://www.appliedmldays.org/).
+
+## Conclusion
+
+Overall, the SwissFeels project performs quite well. Some queries are polluted by bots or spurious matches, as our current implementation simply searches for string occurrences in the raw text. However, many queries are very clear ("skiing", etc.) and give interesting results. Labeling tweets with entity mentions would provide more reliable search results in the current implementation.
