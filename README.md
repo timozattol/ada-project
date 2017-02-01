@@ -35,12 +35,25 @@ We also decided to keep other interesting fields:
 
 ## Result graphs
 
+### Number of tweets in each language
+![Languages](http://i.imgur.com/4WZbxpQ.png)
 
+### Happiness with swiss railways
+![Trains](http://i.imgur.com/nkXQuNv.png)
 
+### Can we see the "röschtigraben"?
+![Röschti](http://i.imgur.com/IGnqHm2.png)
+
+### How do the swiss feel about Hillary and Donald?
+![Presidency](http://i.imgur.com/IGnqHm2.png)
+
+### Where is the biggest portuguese community?
+![Portuguese community](http://i.imgur.com/ECaUsB1.png)
 
 ## Website
 We built an interactive map of Switzerland that displays the mean sentiment of each Swiss canton. Thanks to the search function, it is possible to view the mean of a subset of tweets containing search terms such as "SBB CFF FFS". See the screenshots section for an example of mean sentiment. There's also an option to display a map of the proportion of tweets containing the search terms, as you can see in the screenshots section. Some matching tweets are displayed so that the user can verify that his/her query works well.
 
-## Screenshots
-
+## Website screenshots
+![1](http://i.imgur.com/r7UvsWj.jpg)
+![2](http://i.imgur.com/iFvCprJ.jpg)
 
